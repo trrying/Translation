@@ -8,15 +8,11 @@ import android.support.v7.app.AlertDialog;
 import com.owm.biubiuboom.presenter.BasePresenter;
 import com.owm.biubiuboom.view.base.BaseActivity;
 
-import rx.subscriptions.CompositeSubscription;
-
 /**
  * Created by ouweiming on 2016/10/31.
  */
 
 public abstract class MvpActivity<P extends BasePresenter> extends BaseActivity implements IView{
-
-    protected CompositeSubscription mCompositeSubscription;
 
     protected P mPresenter;
 
@@ -26,7 +22,6 @@ public abstract class MvpActivity<P extends BasePresenter> extends BaseActivity 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         mPresenter = createPresenter();
         super.onCreate(savedInstanceState);
-        showLoading();
     }
 
     protected abstract @NonNull P createPresenter();
