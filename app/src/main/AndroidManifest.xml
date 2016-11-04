@@ -9,7 +9,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".common.CommonApplication"
         android:theme="@style/AppTheme">
+
+        <service android:name=".service.ClipboardManagerService"/>
+
         <activity
             android:name=".view.main.MainActivity"
             android:label="@string/app_name"
