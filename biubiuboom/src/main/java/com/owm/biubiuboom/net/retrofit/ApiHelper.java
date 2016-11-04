@@ -15,7 +15,7 @@ public class ApiHelper {
     public static final String KEY = "pgskoVGyRHixyyUj_49u";
 
     public static String getSign(String query, String salt) {
-        String temp = new String();
+        StringBuilder temp = new StringBuilder();
         temp.append(APP_ID).append(query).append(salt).append(KEY);
         return md5(temp.toString());
     }
