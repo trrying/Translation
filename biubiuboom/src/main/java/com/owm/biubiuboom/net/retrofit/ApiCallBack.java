@@ -5,6 +5,9 @@ import rx.Subscriber;
 
 
 /**
+ * Rx 订阅实现回调
+ * 但是在实际应用中，Subscriber只可以订阅一次，下次再订阅时就无法回调
+ * 建议使用IcallBack回调
  * Created by ouweiming on 2016/11/1.
  */
 

@@ -9,6 +9,7 @@ import com.owm.biubiuboom.presenter.BasePresenter;
 import com.owm.biubiuboom.view.base.BaseActivity;
 
 /**
+ * Mvp activity基类
  * Created by ouweiming on 2016/10/31.
  */
 
@@ -51,5 +52,10 @@ public abstract class MvpActivity<P extends BasePresenter> extends BaseActivity 
         if (mAlertDialog != null && mAlertDialog.isShowing()) {
             mAlertDialog.hide();
         }
+    }
+
+    @Override
+    public void showMessageDialog(String message) {
+        showToast(message);
     }
 }
