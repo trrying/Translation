@@ -1,4 +1,4 @@
-package com.owm.translation.view.main;
+package com.owm.translation.view.translation;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,7 +10,8 @@ import android.widget.EditText;
 
 import com.owm.biubiuboom.view.mvp.MvpActivity;
 import com.owm.translation.R;
-import com.owm.translation.presenter.MainPresenter;
+import com.owm.translation.model.BaiduTranslationBean;
+import com.owm.translation.presenter.TranslationPresenter;
 import com.owm.translation.utils.ClipBroardUtil;
 
 import butterknife.Bind;
@@ -21,7 +22,7 @@ import butterknife.OnClick;
  * Created by ouweiming on 2016/11/3.
  */
 
-public class TranslationActivity extends MvpActivity<MainPresenter> implements IMainView{
+public class TranslationActivity extends MvpActivity<TranslationPresenter> implements ITranslationView {
 
     @Bind(R.id.edit_query)
     EditText edit_query;
@@ -36,8 +37,8 @@ public class TranslationActivity extends MvpActivity<MainPresenter> implements I
 
     @NonNull
     @Override
-    protected MainPresenter createPresenter() {
-        return new MainPresenter(this);
+    protected TranslationPresenter createPresenter() {
+        return new TranslationPresenter(this);
     }
 
     @OnClick(R.id.bt_tranlation)
@@ -56,5 +57,8 @@ public class TranslationActivity extends MvpActivity<MainPresenter> implements I
     }
 
 
+    @Override
+    public void showResult(BaiduTranslationBean model) {
 
+    }
 }

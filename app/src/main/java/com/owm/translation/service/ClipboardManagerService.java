@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 
 import com.owm.biubiuboom.utils.LogUtil;
 import com.owm.translation.utils.ClipBroardUtil;
+import com.owm.translation.view.translation.FloatTranslationView;
 
 /**
  * 监听剪切板变化服务
@@ -36,5 +37,6 @@ public class ClipboardManagerService extends Service implements ClipboardManager
     @Override
     public void onPrimaryClipChanged() {
         LogUtil.i(ClipBroardUtil.getClipBroardText(getApplicationContext()));
+        FloatTranslationView.getInstall(getApplicationContext()).translation(ClipBroardUtil.getClipBroardText(getApplicationContext()));
     }
 }

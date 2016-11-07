@@ -8,20 +8,20 @@ import com.owm.translation.model.BaiduTranslationBean;
 import com.owm.translation.model.MovieResult;
 import com.owm.translation.net.retrofit.BaiduTranslationApi;
 import com.owm.translation.net.retrofit.DoubanMovieTop;
-import com.owm.translation.view.main.IMainView;
+import com.owm.translation.view.translation.ITranslationView;
 
 /**
  * 主界面控制器
  * Created by ouweiming on 2016/10/31.
  */
 
-public class MainPresenter extends BasePresenter<IMainView>{
+public class TranslationPresenter extends BasePresenter<ITranslationView>{
 
     private BaiduTranslationApi mBaiduTranslationApi;
 
     private DoubanMovieTop mDoubanMovieTop;
 
-    public MainPresenter(IMainView view) {
+    public TranslationPresenter(ITranslationView view) {
         super(view);
         mBaiduTranslationApi = ApiClient.getRetrofit().create(BaiduTranslationApi.class);
         mDoubanMovieTop = ApiClient.getRetrofit().create(DoubanMovieTop.class);
@@ -50,7 +50,7 @@ public class MainPresenter extends BasePresenter<IMainView>{
                 mView.showMessageDialog(BaiduTranslationBean.getErrorCodes().get(model.getError_code()));
                 return;
             }
-            mView.showMessageDialog(model.getTrans_result().get(0).getDst());
+            mView.showResult(model);
         }
 
         @Override

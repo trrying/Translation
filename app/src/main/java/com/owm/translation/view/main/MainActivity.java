@@ -14,10 +14,12 @@ import android.view.View;
 
 import com.owm.biubiuboom.view.mvp.MvpActivity;
 import com.owm.translation.R;
-import com.owm.translation.presenter.MainPresenter;
+import com.owm.translation.model.BaiduTranslationBean;
+import com.owm.translation.presenter.TranslationPresenter;
+import com.owm.translation.view.translation.ITranslationView;
 
-public class MainActivity extends MvpActivity<MainPresenter>
-        implements NavigationView.OnNavigationItemSelectedListener, IMainView {
+public class MainActivity extends MvpActivity<TranslationPresenter>
+        implements NavigationView.OnNavigationItemSelectedListener, ITranslationView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +50,8 @@ public class MainActivity extends MvpActivity<MainPresenter>
 
     @NonNull
     @Override
-    protected MainPresenter createPresenter() {
-        return new MainPresenter(this);
+    protected TranslationPresenter createPresenter() {
+        return new TranslationPresenter(this);
     }
 
     @Override
@@ -109,4 +111,8 @@ public class MainActivity extends MvpActivity<MainPresenter>
         return true;
     }
 
+    @Override
+    public void showResult(BaiduTranslationBean model) {
+
+    }
 }
