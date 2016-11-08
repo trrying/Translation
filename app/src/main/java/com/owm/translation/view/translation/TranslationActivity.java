@@ -33,6 +33,7 @@ public class TranslationActivity extends MvpActivity<TranslationPresenter> imple
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_translation);
+        System.out.println("push 1");
     }
 
     @NonNull
