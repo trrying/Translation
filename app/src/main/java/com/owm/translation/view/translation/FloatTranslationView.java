@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.owm.biubiuboom.utils.LogUtil;
 import com.owm.translation.R;
@@ -107,9 +108,15 @@ public class FloatTranslationView implements ITranslationView {
 
     }
 
+    private Toast mToast;
     @Override
     public void showMessageDialog(String message) {
-
+        if (mToast == null) {
+            mToast = Toast.makeText(mContext, message, Toast.LENGTH_SHORT);
+        } else {
+            mToast.setText(message);
+        }
+        mToast.show();
     }
 
     @Override

@@ -37,6 +37,6 @@ public class ClipboardManagerService extends Service implements ClipboardManager
     @Override
     public void onPrimaryClipChanged() {
         LogUtil.i(ClipBroardUtil.getClipBroardText(getApplicationContext()));
-        FloatTranslationView.getInstall(getApplicationContext()).translation(ClipBroardUtil.getClipBroardText(getApplicationContext()));
+        FloatTranslationView.getInstall().translation(ClipBroardUtil.getClipBroardText(getApplicationContext()));
     }
 }
