@@ -59,6 +59,6 @@ public class TranslationActivity extends MvpActivity<TranslationPresenter> imple
 
     @Override
     public void showResult(BaiduTranslationBean model) {
-
+        showMessageDialog(model.getTrans_result().get(0).getDst());
     }
 }
