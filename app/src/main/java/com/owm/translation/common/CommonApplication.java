@@ -12,9 +12,16 @@ import com.owm.translation.service.ClipboardManagerService;
 
 public class CommonApplication extends Application {
 
+    private static Application mApplication;
+
     @Override
     public void onCreate() {
         super.onCreate();
         startService(new Intent(this, ClipboardManagerService.class));
+        mApplication = this;
+    }
+
+    public static Application getmApplication() {
+        return mApplication;
     }
 }

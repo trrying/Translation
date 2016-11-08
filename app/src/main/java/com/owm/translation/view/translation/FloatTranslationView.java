@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.owm.biubiuboom.utils.LogUtil;
 import com.owm.translation.R;
+import com.owm.translation.common.CommonApplication;
 import com.owm.translation.model.BaiduTranslationBean;
 import com.owm.translation.presenter.TranslationPresenter;
 
@@ -23,6 +24,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
 /**
+ * 浮动翻译窗口
  * Created by ouweiming on 2016/11/7.
  */
 
@@ -41,11 +43,11 @@ public class FloatTranslationView implements ITranslationView {
 
     private static FloatTranslationView install;
 
-    public static FloatTranslationView getInstall(Context context) {
+    public static FloatTranslationView getInstall() {
         if (install == null) {
             synchronized (FloatTranslationView.class) {
                 if (install == null) {
-                    install = new FloatTranslationView(context);
+                    install = new FloatTranslationView(CommonApplication.getmApplication());
                 }
             }
         }
@@ -78,8 +80,8 @@ public class FloatTranslationView implements ITranslationView {
     }
 
     private void showView(){
-        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT
-                , WindowManager.LayoutParams.MATCH_PARENT, getType(), 0, PixelFormat.TRANSLUCENT);
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT
+                , WindowManager.LayoutParams.WRAP_CONTENT, getType(), 0, PixelFormat.TRANSLUCENT);
         layoutParams.gravity = Gravity.TOP;
         mWindowManager.addView(mainView, layoutParams);
     }

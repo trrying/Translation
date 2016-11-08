@@ -1,8 +1,17 @@
 <resources>
-    <string name="app_name">Translation</string>
+    <string name="app_name">翻译助手</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="translation_hint">在此输入要翻译的文本</string>
+    <string name="translation_bt">译</string>
+
+    <string name="intro_tip">*</string>
+    <string name="intro">欢迎使用翻译助手。\n启用服务后，在手机其他使用情况下，复制英文单词，就会在屏幕顶部显示出翻译结果！</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+
 </resources>
