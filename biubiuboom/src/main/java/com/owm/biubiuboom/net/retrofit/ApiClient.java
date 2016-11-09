@@ -1,5 +1,7 @@
 package com.owm.biubiuboom.net.retrofit;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -13,37 +15,42 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class ApiClient {
-    public static Retrofit mRetrofit;
+    private static Map<String, Retrofit> mRetrofit = new ConcurrentHashMap<>();
 
-    public static String baseUrl = "http://api.fanyi.baidu.com/";
-//    public static String baseUrl = "https://api.douban.com/";
+    public static String baidu_fanyi_URL = "http://api.fanyi.baidu.com/";
+    public static String youdao_fanyi_URL = "http://fanyi.youdao.com/";
 
-    public static Retrofit getRetrofit() {
-        if (mRetrofit == null) {
+    public static Retrofit getBaiduFanYiRetrofit() {
+        return getRetrofit(baidu_fanyi_URL);
+    }
+
+    public static Retrofit getYouDaoFanYiRetrofit() {
+        return getRetrofit(youdao_fanyi_URL);
+    }
+
+
+    public static Retrofit getRetrofit(String baseUrl) {
+        if (mRetrofit.get(baseUrl) == null) {
             synchronized (ApiClient.class){
-                if (mRetrofit == null) {
+                if (mRetrofit.get(baseUrl) == null) {
                     OkHttpClient.Builder builder = new OkHttpClient.Builder();
-//                    if (BuildConfig.DEBUG) {
-//                        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-//                        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//                        builder.addInterceptor(loggingInterceptor);
-//                    }
                     builder.addInterceptor(new OkHttpLoggingInterceptor());
 
                     OkHttpClient okHttpClient = builder
                             .connectTimeout(10, TimeUnit.SECONDS)
                             .build();
 
-                    mRetrofit = new Retrofit.Builder()
+                    Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(baseUrl)
                             .addConverterFactory(GsonConverterFactory.create())
                             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                             .client(okHttpClient)
                             .build();
+                    mRetrofit.put(baseUrl, retrofit);
                 }
             }
         }
-        return mRetrofit;
+        return mRetrofit.get(baseUrl);
     }
 
 
