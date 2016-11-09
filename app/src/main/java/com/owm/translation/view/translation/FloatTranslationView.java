@@ -80,9 +80,13 @@ public class FloatTranslationView implements ITranslationView {
         }
     }
 
+    private int getFlags() {
+        return WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
+    }
+
     private void showView(){
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT
-                , WindowManager.LayoutParams.WRAP_CONTENT, getType(), 0, PixelFormat.TRANSLUCENT);
+                , WindowManager.LayoutParams.WRAP_CONTENT, getType(), getFlags(), PixelFormat.TRANSLUCENT);
         layoutParams.gravity = Gravity.TOP;
         mWindowManager.addView(mainView, layoutParams);
     }
