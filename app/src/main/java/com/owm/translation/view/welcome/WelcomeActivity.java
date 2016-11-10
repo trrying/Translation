@@ -11,6 +11,7 @@ import com.owm.translation.R;
 import com.owm.translation.view.translation.TranslationActivity;
 
 /**
+ * 欢迎界面
  * Created by ouweiming on 2016/11/8.
  */
 
@@ -35,6 +36,6 @@ public class WelcomeActivity extends BaseActivity {
 //                startActivity(new Intent(WelcomeActivity.this, TranslationActivity.class));
 //            }
 //        });
-        mHandler.sendEmptyMessageDelayed(1, 2000);
+        mHandler.sendEmptyMessageDelayed(1, 500);
     }
 }

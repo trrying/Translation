@@ -1,6 +1,6 @@
 package com.owm.translation.net.retrofit;
 
-import com.owm.translation.model.BaiduTranslationBean;
+import com.owm.translation.model.YoudaoTranslationBean;
 
 import java.util.Map;
 
@@ -17,7 +17,7 @@ import rx.Observable;
 public interface YoudaoTranslationApi {
 
     @GET("openapi.do")
-    Observable<BaiduTranslationBean> translation4Youdao(@Query("q") String q
+    Observable<YoudaoTranslationBean> translation4Youdao(@Query("q") String q
             , @QueryMap Map<String, String> defaultParams);
 
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_marginLeft="@dimen/default_margin"
+    android:orientation="horizontal">
+
+
+    <com.owm.translation.weidget.CustomTextView
+        android:id="@+id/tv_explain"
+        style="@style/baseTextViewStyle.youdaoResult_phometic_text"
+        tools:text="n. 好处；善行；慷慨的行为"/>
+
+
+</LinearLayout>

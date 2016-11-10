@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,10 +7,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".view.translation.TranslationActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context=".view.translation.TranslationActivity">
 
     <LinearLayout
+        android:id="@+id/ll_translation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -31,9 +31,43 @@
             android:text="@string/translation_bt"/>
     </LinearLayout>
 
-    <RelativeLayout
+    <RadioGroup
+        android:id="@+id/rg_choose_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/ll_translation"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_baidu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="baidu"/>
+
+        <RadioButton
+            android:id="@+id/rb_youdao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="youdao"/>
+
+    </RadioGroup>
+
+    <include
+        android:id="@+id/view_youdao_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/view_youdao_result"
+        android:layout_marginTop="10dp"
+        android:layout_above="@+id/rl_intro"
+        android:layout_below="@+id/rg_choose_type"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:padding="@dimen/fab_margin">
 
         <TextView
@@ -49,7 +83,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp"
-            android:layout_toEndOf="@+id/textView"
             android:layout_toRightOf="@+id/textView"
             android:text="@string/intro"
             android:textColor="@color/color_gray"
@@ -58,4 +91,4 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

@@ -132,7 +132,7 @@ public class BaiduTranslationBean extends BaseBean{
 //    54004	账户余额不足	前往管理控制台为账户充值
 //    54005	长query请求频繁	请降低长query的发送频率，3s后再试
 
-    public final static String successCode = "52000";
+    public final static String SUCCESS_CODE = "52000";
 
     private final static Map<String, String> ERROR_CODES = new HashMap<>();
 

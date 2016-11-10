@@ -13,6 +13,7 @@ import com.owm.biubiuboom.utils.LogUtil;
 import com.owm.translation.R;
 import com.owm.translation.common.CommonApplication;
 import com.owm.translation.model.BaiduTranslationBean;
+import com.owm.translation.model.YoudaoTranslationBean;
 import com.owm.translation.presenter.TranslationPresenter;
 
 import java.util.concurrent.TimeUnit;
@@ -65,6 +66,12 @@ public class FloatTranslationView implements ITranslationView {
     private void init() {
         mainView = View.inflate(mContext, R.layout.win_quick_query, null);
         ButterKnife.bind(this, mainView);
+
+
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT
+                , WindowManager.LayoutParams.WRAP_CONTENT, getType(), getFlags(), PixelFormat.TRANSLUCENT);
+        layoutParams.gravity = Gravity.TOP;
+        mWindowManager.addView(mainView, layoutParams);
     }
 
     public void translation(String dst) {
@@ -85,16 +92,11 @@ public class FloatTranslationView implements ITranslationView {
     }
 
     private void showView(){
-        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT
-                , WindowManager.LayoutParams.WRAP_CONTENT, getType(), getFlags(), PixelFormat.TRANSLUCENT);
-        layoutParams.gravity = Gravity.TOP;
-        mWindowManager.addView(mainView, layoutParams);
+        mainView.setVisibility(View.VISIBLE);
     }
 
     private void hideView(){
-        if (mWindowManager != null && mainView != null) {
-            mWindowManager.removeView(mainView);
-        }
+        mainView.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.rl_result)
@@ -141,5 +143,10 @@ public class FloatTranslationView implements ITranslationView {
                 hideView();
             }
         });
+    }
+
+    @Override
+    public void showResult(YoudaoTranslationBean model) {
+
     }
 }

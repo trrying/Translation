@@ -2,7 +2,7 @@ package com.owm.translation.net.retrofit;
 
 import com.owm.translation.model.BaiduTranslationBean;
 
-import retrofit2.http.POST;
+import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -13,7 +13,7 @@ import rx.Observable;
 
 public interface BaiduTranslationApi {
 
-    @POST("api/trans/vip/translate")
+    @GET("api/trans/vip/translate")
     Observable<BaiduTranslationBean> translation4Baidu(@Query("q") String q
             , @Query("from") String from, @Query("to") String to, @Query("appid") String appid
             , @Query("salt") String salt, @Query("sign") String sign);

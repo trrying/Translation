@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.owm.translation.weidget.YoudaoNestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_youdao_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.owm.translation.weidget.CustomTextView
+            android:id="@+id/tv_src"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textColor="@android:color/black"
+            android:textSize="22dp"
+            app:text_style_bold="true"
+            tools:text="detached"/>
+
+        <LinearLayout
+            android:id="@+id/ll_basic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="@dimen/default_margin"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/Ll_phonetic"
+                style="@style/youdaoResult_phometic_root"
+                tools:visibility="visible">
+
+                <ImageView style="@style/youdaoResult_phometic_icon"/>
+
+                <com.owm.translation.weidget.CustomTextView
+                    style="@style/baseTextViewStyle.youdaoResult_phometic_text"
+                    android:text="音"/>
+
+                <TextView
+                    android:id="@+id/tv_phonetic"
+                    style="@style/baseTextViewStyle.youdaoResult_phometic_text"
+                    tools:text="[di`tatft]"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Ll_us_phonetic"
+                style="@style/youdaoResult_phometic_root"
+                tools:visibility="visible">
+
+                <ImageView style="@style/youdaoResult_phometic_icon"/>
+
+                <com.owm.translation.weidget.CustomTextView
+                    style="@style/baseTextViewStyle.youdaoResult_phometic_text"
+                    android:text="美"/>
+
+                <TextView
+                    android:id="@+id/tv_us_phonetic"
+                    style="@style/baseTextViewStyle.youdaoResult_phometic_text"
+                    tools:text="[di`tatft]"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Ll_uk_phonetic"
+                style="@style/youdaoResult_phometic_root"
+                tools:visibility="visible">
+
+                <ImageView style="@style/youdaoResult_phometic_icon"/>
+
+                <com.owm.translation.weidget.CustomTextView
+                    style="@style/baseTextViewStyle.youdaoResult_phometic_text"
+                    android:text="英"/>
+
+                <TextView
+                    android:id="@+id/tv_uk_phonetic"
+                    style="@style/baseTextViewStyle.youdaoResult_phometic_text"
+                    tools:text="[di`tatft]"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_explains"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:nestedScrollingEnabled="true"
+            tools:listitem="@layout/item_youdao_result_explains"/>
+
+        <LinearLayout
+            android:id="@+id/ll_web"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="@dimen/default_margin"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.owm.translation.weidget.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="网络释义"
+                        android:textColor="@color/tab_color"
+                        android:textSize="15dp"
+                        app:text_style_bold="true"/>
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:background="@color/tab_color"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_web"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
+                tools:listitem="@layout/item_youdao_result_web"/>
+        </LinearLayout>
+    </LinearLayout>
+</com.owm.translation.weidget.YoudaoNestedScrollView>

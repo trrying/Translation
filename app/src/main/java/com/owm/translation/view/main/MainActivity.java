@@ -15,6 +15,7 @@ import android.view.View;
 import com.owm.biubiuboom.view.mvp.MvpActivity;
 import com.owm.translation.R;
 import com.owm.translation.model.BaiduTranslationBean;
+import com.owm.translation.model.YoudaoTranslationBean;
 import com.owm.translation.presenter.TranslationPresenter;
 import com.owm.translation.view.translation.ITranslationView;
 
@@ -113,6 +114,11 @@ public class MainActivity extends MvpActivity<TranslationPresenter>
 
     @Override
     public void showResult(BaiduTranslationBean model) {
+
+    }
+
+    @Override
+    public void showResult(YoudaoTranslationBean model) {
 
     }
 }
