@@ -33,4 +33,15 @@
 
     </LinearLayout>
 
+
+    <include
+        android:id="@+id/view_youdao_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/view_youdao_result"
+        android:layout_marginTop="10dp"
+        android:layout_above="@+id/rl_intro"
+        android:layout_below="@+id/rg_choose_type"/>
+
+
 </LinearLayout>

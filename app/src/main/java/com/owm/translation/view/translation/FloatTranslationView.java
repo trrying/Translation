@@ -6,6 +6,7 @@ import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,10 @@ import com.owm.translation.common.CommonApplication;
 import com.owm.translation.model.BaiduTranslationBean;
 import com.owm.translation.model.YoudaoTranslationBean;
 import com.owm.translation.presenter.TranslationPresenter;
+import com.owm.translation.utils.GlobalProperty;
+import com.owm.translation.utils.SPUtil;
+import com.owm.translation.utils.ViewUtil;
+import com.owm.translation.weidget.YoudaoNestedScrollView;
 
 import java.util.concurrent.TimeUnit;
 
@@ -42,6 +47,10 @@ public class FloatTranslationView implements ITranslationView {
     TextView tv_dst;
     @Bind(R.id.tv_src)
     TextView tv_src;
+    @Bind(R.id.view_youdao_result)
+    YoudaoNestedScrollView mNsYoudaoResult;
+    @Bind(R.id.rl_result)
+    LinearLayout mRlResult;
 
     private static FloatTranslationView install;
 
@@ -56,7 +65,7 @@ public class FloatTranslationView implements ITranslationView {
         return install;
     }
 
-    private FloatTranslationView(Context context){
+    private FloatTranslationView(Context context) {
         mContext = context;
         mPresenter = new TranslationPresenter(this);
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -75,11 +84,10 @@ public class FloatTranslationView implements ITranslationView {
     }
 
     public void translation(String dst) {
-        tv_dst.setText(dst);
-        mPresenter.translation(dst);
+        mPresenter.translation(dst, SPUtil.getInt(GlobalProperty.TRANSLATION_TYPE, GlobalProperty.TRANSLATION_TYPE_BAIDU));
     }
 
-    private int getType(){
+    private int getType() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             return WindowManager.LayoutParams.TYPE_TOAST;
         } else {
@@ -91,16 +99,16 @@ public class FloatTranslationView implements ITranslationView {
         return WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
     }
 
-    private void showView(){
+    private void showView() {
         mainView.setVisibility(View.VISIBLE);
     }
 
-    private void hideView(){
+    private void hideView() {
         mainView.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.rl_result)
-    public void clickResult(View view){
+    public void clickResult(View view) {
         showMessageDialog("click result");
     }
 
@@ -115,6 +123,7 @@ public class FloatTranslationView implements ITranslationView {
     }
 
     private Toast mToast;
+
     @Override
     public void showMessageDialog(String message) {
         if (mToast == null) {
@@ -125,28 +134,39 @@ public class FloatTranslationView implements ITranslationView {
         mToast.show();
     }
 
+    private void showContent(int type) {
+        ViewUtil.isVisble(mRlResult, type == GlobalProperty.TRANSLATION_TYPE_BAIDU);
+        ViewUtil.isVisble(mNsYoudaoResult, type == GlobalProperty.TRANSLATION_TYPE_YOUDAO);
+    }
+
     @Override
     public void showResult(BaiduTranslationBean model) {
         if (model == null || model.getTrans_result() == null || model.getTrans_result().isEmpty()) {
             LogUtil.i("show result model is error");
             return;
         }
+        showContent(GlobalProperty.TRANSLATION_TYPE_BAIDU);
         tv_dst.setText(model.getTrans_result().get(0).getDst());
         tv_src.setText(model.getTrans_result().get(0).getSrc());
         showView();
 
         Observable.timer(5000, TimeUnit.MILLISECONDS)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Action1<Long>() {
-            @Override
-            public void call(Long aLong) {
-                hideView();
-            }
-        });
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+                        hideView();
+                    }
+                });
     }
 
     @Override
     public void showResult(YoudaoTranslationBean model) {
-
+        if (model == null) {
+            LogUtil.i("show result model is error");
+            return;
+        }
+        showContent(GlobalProperty.TRANSLATION_TYPE_YOUDAO);
+        mNsYoudaoResult.setYoudaoTranslationBean(model);
     }
 }
