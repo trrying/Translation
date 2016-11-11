@@ -1,6 +1,5 @@
 package com.owm.translation.adapter;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.owm.translation.R;
 import com.owm.translation.model.YoudaoTranslationBean;
@@ -12,7 +11,7 @@ import java.util.List;
  * Created by ouweiming on 2016/11/10.
  */
 
-public class YoudaoResultWebAdapter extends BaseQuickAdapter<YoudaoTranslationBean.WebBean> {
+public class YoudaoResultWebAdapter extends BaseAdapter<YoudaoTranslationBean.WebBean> {
 
     public YoudaoResultWebAdapter(List<YoudaoTranslationBean.WebBean> data) {
         super(R.layout.item_youdao_result_web, data);

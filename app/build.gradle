@@ -35,7 +35,7 @@ dependencies {
     // 下拉自动补全输入框 https://github.com/seatgeek/android-PlacesAutocompleteTextView
     compile 'com.seatgeek:placesautocomplete:0.2-SNAPSHOT'
     // RecucleView 简易adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v2.0.0'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.5.0'
 
     compile project(':biubiuboom')
 
